@@ -115,9 +115,9 @@ bool ValidasiUsername(const string& username) {
 // Prosedur proses registrasi (menggunakan pointer)
 void prosesRegistrasi(Akun* daftarAkun, int* totalAkun) {
     if (*totalAkun >= maksimalPesanan) {
-        cout << "\n==================================" << endl;
+        cout << "\n===============================" << endl;
         cout << "==  Kuota akun sudah penuh!  ==" << endl;
-        cout << "==================================" << endl;
+        cout << "===============================" << endl;
         return;
     }
 
@@ -152,9 +152,9 @@ void prosesRegistrasi(Akun* daftarAkun, int* totalAkun) {
     daftarAkun[*totalAkun].isAdmin = false;
     (*totalAkun)++;
     
-    cout << "\n==================================" << endl;
+    cout << "\n=================================" << endl;
     cout << "==  Akun berhasil didaftarkan  ==" << endl;
-    cout << "==================================" << endl;
+    cout << "=================================" << endl;
 }
 
 // Fungsi proses login (menggunakan pointer)
@@ -176,9 +176,9 @@ bool prosesLogin(Akun* daftarAkun, int totalAkun, int* indeksPenggunaAktif, int*
         }
     }
     
-    cout << "\n==============================================================" << endl;
+    cout << "\n==========================================================" << endl;
     cout << "==  !!!Username atau Password yang dimasukkan salah!!!  ==" << endl;
-    cout << "==============================================================" << endl;
+    cout << "==========================================================" << endl;
     (*kesempatanLogin)++;
     
     if (*kesempatanLogin == 3) {
@@ -300,13 +300,13 @@ void tambahProduk(Produk* daftarProduk, int* jumlahProduk) {
         }
         
         (*jumlahProduk)++;
-        cout << "\n==================================" << endl;
+        cout << "\n=================================" << endl;
         cout << "== Produk berhasil ditambahkan ==" << endl;
-        cout << "==================================" << endl;
+        cout << "=================================" << endl;
     } else {
-        cout << "\n==================================" << endl;
+        cout << "\n===============================" << endl;
         cout << "== Kuota produk sudah penuh! ==" << endl;
-        cout << "==================================" << endl;
+        cout << "===============================" << endl;
     }
 }
 
@@ -1098,9 +1098,9 @@ void hapusAkunUser(Akun* daftarAkun, int* totalAkun) {
             
             // Cek apakah akun admin
             if (daftarAkun[pilihan-1].isAdmin) {
-                cout << "\n====================================" << endl;
+                cout << "\n=======================================" << endl;
                 cout << "==  Tidak bisa menghapus akun admin  ==" << endl;
-                cout << "====================================" << endl;
+                cout << "=======================================" << endl;
                 continue;
             }
             break;
@@ -1162,9 +1162,9 @@ void tampilkanMenuUser() {
 // Fungsi untuk menampilkan keranjang belanja
 void tampilkanKeranjang(const Akun* akunPengguna) {
     if (akunPengguna->itemKeranjang == 0) {
-        cout << "\n=======================================" << endl;
+        cout << "\n======================================" << endl;
         cout << "==  Keranjang Anda masih kosong :(  ==" << endl;
-        cout << "=======================================" << endl;
+        cout << "======================================" << endl;
         return;
     }
 
@@ -1192,9 +1192,9 @@ void tampilkanKeranjang(const Akun* akunPengguna) {
 // Fungsi untuk menambah item ke keranjang
 void tambahKeKeranjang(Akun* akunPengguna, Produk* daftarProduk, int jumlahProduk) {
     if (akunPengguna->itemKeranjang >= maksimalPesanan) {
-        cout << "\n================================================" << endl;
+        cout << "\n=================================================" << endl;
         cout << "==  Keranjang sudah penuh, tidak bisa menambah ==" << endl;
-        cout << "================================================" << endl;
+        cout << "=================================================" << endl;
         return;
     }
 
@@ -1287,17 +1287,17 @@ void tambahKeKeranjang(Akun* akunPengguna, Produk* daftarProduk, int jumlahProdu
     
     akunPengguna->itemKeranjang++;
     
-    cout << "\n====================================" << endl;
+    cout << "\n==============================================" << endl;
     cout << "==  Item berhasil ditambahkan ke keranjang  ==" << endl;
-    cout << "====================================" << endl;
+    cout << "==============================================" << endl;
 }
 
 // Fungsi untuk mengubah item dalam keranjang
 void ubahItemKeranjang(Akun* akunPengguna, Produk* daftarProduk, int jumlahProduk) {
     if (akunPengguna->itemKeranjang == 0) {
-        cout << "\n=======================================" << endl;
+        cout << "\n======================================" << endl;
         cout << "==  Keranjang Anda masih kosong :(  ==" << endl;
-        cout << "=======================================" << endl;
+        cout << "======================================" << endl;
         return;
     }
 
@@ -1439,7 +1439,7 @@ void hapusItemKeranjang(Akun* akunPengguna, Produk* daftarProduk, int jumlahProd
     if (akunPengguna->itemKeranjang == 0) {
         cout << "\n=======================================" << endl;
         cout << "==  Keranjang Anda masih kosong :(  ==" << endl;
-        cout << "=======================================" << endl;
+        cout << "======================================" << endl;
         return;
     }
 
@@ -1477,9 +1477,9 @@ void hapusItemKeranjang(Akun* akunPengguna, Produk* daftarProduk, int jumlahProd
     
     akunPengguna->itemKeranjang--;
     
-    cout << "\n====================================" << endl;
+    cout << "\n============================================" << endl;
     cout << "==  Item berhasil dihapus dari keranjang  ==" << endl;
-    cout << "====================================" << endl;
+    cout << "============================================" << endl;
 }
 
 // Fungsi untuk checkout (memindahkan dari keranjang ke daftar pesanan)
@@ -1487,7 +1487,7 @@ void checkout(Akun* akunPengguna) {
     if (akunPengguna->itemKeranjang == 0) {
         cout << "\n=======================================" << endl;
         cout << "==  Keranjang Anda masih kosong :(  ==" << endl;
-        cout << "=======================================" << endl;
+        cout << "======================================" << endl;
         return;
     }
 
@@ -1527,21 +1527,20 @@ void checkout(Akun* akunPengguna) {
     // Kosongkan keranjang
     akunPengguna->itemKeranjang = 0;
     
-    cout << "\n====================================" << endl;
+    cout << "\n=========================================================" << endl;
     cout << "==  Checkout berhasil! Terima kasih telah berbelanja.  ==" << endl;
-    cout << "====================================" << endl;
+    cout << "=========================================================" << endl;
 }
 
 // ============
 // Fungsi utama
 // ============
 int main() {
-    Akun daftarAkun[maksimalPesanan];
-    Produk daftarProduk[maksimalProduk] = {
-        {"T-Shirt", "150000"},
-        {"Hoodie", "300000"},
-        {"Topi", "80000"}
-    };
+    Akun* daftarAkun = new Akun[maksimalPesanan];
+    Produk* daftarProduk = new Produk[maksimalProduk];
+    daftarProduk[0] = {"T-Shirt", "150000"};
+    daftarProduk[1] = {"Hoodie", "300000"};
+    daftarProduk[2] = {"Topi", "80000"};\
     int jumlahProduk = 3;
     int totalAkun = 0; 
     int kesempatanLogin = 0;
@@ -1637,5 +1636,7 @@ int main() {
         }
     }
 
+    delete[] daftarAkun;
+    delete[] daftarProduk;
     return 0;
 }

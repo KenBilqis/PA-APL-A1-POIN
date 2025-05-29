@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <cmath>
 #include <limits>
+#include <csignal>
 
 using namespace std;
 
@@ -1532,10 +1533,26 @@ void checkout(Akun* akunPengguna) {
     cout << "=========================================================" << endl;
 }
 
+// Variabel global untuk kontrol program
+volatile sig_atomic_t keep_running = 1;
+
+// Fungsi penangan sinyal
+void handle_signal(int signal) {
+    if (signal == SIGINT) {
+        std::cout << "\nCtrl+C detected. Program will continue. Type 'exit' to quit.\n";
+        keep_running = 1;
+        std::cin.clear(); // Bersihkan error state
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Bersihkan buffer
+    }
+}
+
 // ============
 // Fungsi utama
 // ============
 int main() {
+    // Set up signal handler
+    signal(SIGINT, handle_signal);
+
     Akun* daftarAkun = new Akun[maksimalPesanan];
     Produk* daftarProduk = new Produk[maksimalProduk];
     daftarProduk[0] = {"T-Shirt", "150000"};
@@ -1553,7 +1570,7 @@ int main() {
     daftarAkun[totalAkun].isAdmin = true;
     totalAkun++;
 
-    while (true) {
+    while (keep_running) {
         tampilkanMenuAwal();
         int pilihanAwal = validasiInputPilihan(1, 3, "Masukkan pilihan [1-3]: ");
 

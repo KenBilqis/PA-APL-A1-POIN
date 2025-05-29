@@ -161,11 +161,30 @@ void prosesRegistrasi(Akun* daftarAkun, int* totalAkun) {
 // Fungsi proses login (menggunakan pointer)
 bool prosesLogin(Akun* daftarAkun, int totalAkun, int* indeksPenggunaAktif, int* kesempatanLogin, bool* isAdmin) {
     string username, password;
-    cout << "\nMasukkan Username: ";
-    getline(cin, username);
-    cout << "Masukkan Password: ";
-    getline(cin, password);
-    
+    do {
+        cout << "\nMasukkan Username: ";
+        getline(cin, username);
+
+        username.erase(0, username.find_first_not_of(" \t"));
+        username.erase(username.find_last_not_of(" \t") + 1);
+
+        if (username.empty()) {
+            cout << "Username tidak boleh kosong atau hanya spasi!\n";
+        }
+    } while (username.empty());
+
+    do {
+        cout << "Masukkan Password: ";
+        getline(cin, password);
+
+        password.erase(0, password.find_first_not_of(" \t"));
+        password.erase(password.find_last_not_of(" \t") + 1);
+
+        if (password.empty()) {
+            cout << "Password tidak boleh kosong atau hanya spasi!\n";
+        }
+    } while (password.empty());
+
     for (int i = 0; i < totalAkun; i++) {
         if (daftarAkun[i].username == username && daftarAkun[i].password == password) {
             *indeksPenggunaAktif = i;
@@ -964,7 +983,7 @@ void ubahProduk(Produk* daftarProduk, int jumlahProduk) {
         }
         konfirmasi = tolower(input[0]);
 
-        if (konfirmasi == 'y' || konfirmasi == 'Y') {
+        if (konfirmasi == 'y' || konfirmasi == 'n') {
             break;
         } else {
             cout << "Input tidak valid. Masukkan 'y' atau 'n'!" << endl;
@@ -1037,7 +1056,7 @@ void hapusProduk(Produk* daftarProduk, int* jumlahProduk) {
         }
         konfirmasi = tolower(input[0]);
 
-        if (konfirmasi == 'y' || konfirmasi == 'Y') {
+        if (konfirmasi == 'y' || konfirmasi == 'n') {
             break;
         } else {
             cout << "Input tidak valid. Masukkan 'y' atau 'n'!" << endl;
